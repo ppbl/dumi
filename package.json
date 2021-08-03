@@ -18,12 +18,13 @@
     "debug": "umi-test",
     "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty \"./packages\"",
     "prettier": "prettier -c --write \"**/*\"",
-    "publish": "npm run build && umi-test && lerna publish -m \"chore: publish\"",
+    "publish": "npm run build && lerna publish -m \"chore: publish\"",
+    "eager-publish": "lerna publish -m \"chore: publish\"",
     "now-build": "echo \"hello\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/umijs/dumi.git"
+    "url": "git+https://github.com/ppbl/dumi.git"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",

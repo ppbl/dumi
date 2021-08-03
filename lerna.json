@@ -7,13 +7,16 @@
       "pr(dependency)": ":deciduous_tree: Dependency",
       "pr(chore)": ":turtle: Chore"
     },
-    "repo": "umijs/dumi",
+    "repo": "ppbl/dumi",
     "cacheDir": ".changelog"
   },
   "packages": ["packages/*"],
   "command": {
     "version": {
       "exact": true
+    },
+    "publish": {
+      "registry": "httpr://registry.npm.ppbl.top"
     }
   },
   "version": "independent",

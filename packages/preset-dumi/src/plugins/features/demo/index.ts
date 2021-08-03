@@ -207,7 +207,7 @@ export default (api: IApi) => {
       memo.push(...Object.keys(demos).map(uuid => {
         const demoRoutePath = `/${getDemoRouteName()}/${uuid}`;
 
-        return ({ route: { path: demoRoutePath }, file: `${demoRoutePath}.html` });
+        return ({ route: { path: demoRoutePath }, file: `${demoRoutePath}/index.html` });
       }));
     }
 
