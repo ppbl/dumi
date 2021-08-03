@@ -211,16 +211,18 @@ export default (api: IApi) => {
 
   // export static for dynamic demos
   api.modifyExportRouteMap(memo => {
-    if (api.config.exportStatic) {
+    const exportStatic = api.config.exportStatic;
+    if (exportStatic) {
       memo.push(
         ...Object.keys(demos).map(uuid => {
           const demoRoutePath = `/${getDemoRouteName()}/${uuid}`;
-
-          return { route: { path: demoRoutePath }, file: `${demoRoutePath}/index.html` };
+          return {
+            route: { path: demoRoutePath },
+            file: `${demoRoutePath}${exportStatic.htmlSuffix ? '' : '/index'}.html`,
+          };
         }),
       );
     }
-
     return memo;
   });
 };
