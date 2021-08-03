@@ -45,22 +45,28 @@ export default (api: IApi) => {
       demoComponent = decodeImportRequireWithAutoDynamic(demoComponent, chunkName);
 
       // hoist all raw code import statements
-      Object.entries(demos[uuid].previewerProps.sources).forEach(([file, oContent]: [string, any]) => {
-        const content = file === '_' ? Object.values(oContent)[0] : oContent.content;
+      Object.entries(demos[uuid].previewerProps.sources).forEach(
+        ([file, oContent]: [string, any]) => {
+          const content = file === '_' ? Object.values(oContent)[0] : oContent.content;
 
-        if (isHoistImport(content)) {
-          if (!hoistImports[content]) {
-            hoistImports[content] = hoistImportCount;
-            hoistImportCount += 1;
+          if (isHoistImport(content)) {
+            if (!hoistImports[content]) {
+              hoistImports[content] = hoistImportCount;
+              hoistImportCount += 1;
+            }
+
+            itemHoistImports[content] = hoistImports[content];
           }
-
-          itemHoistImports[content] = hoistImports[content];
-        }
-      });
+        },
+      );
 
       // replace collected import statments to rawCode var
       const previewerPropsStr = Object.entries(itemHoistImports).reduce(
-        (str, [stmt, no]) => str.replace(new RegExp(`"${stmt.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g'), `rawCode${no}`),
+        (str, [stmt, no]) =>
+          str.replace(
+            new RegExp(`"${stmt.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g'),
+            `rawCode${no}`,
+          ),
         JSON.stringify(demos[uuid].previewerProps),
       );
 
@@ -169,7 +175,9 @@ export default (api: IApi) => {
             const { default: getDemoRenderArgs } = await import(/* webpackChunkName: 'dumi_demos' */ '${api.utils.winPath(
               path.join(__dirname, './getDemoRenderArgs'),
             )}');
-            const { default: Previewer } = await import(/* webpackChunkName: 'dumi_demos' */ '${Previewer.source}');
+            const { default: Previewer } = await import(/* webpackChunkName: 'dumi_demos' */ '${
+              Previewer.source
+            }');
             const { default: demos } = await import(/* webpackChunkName: 'dumi_demos' */ '@@/dumi/demos');
             const { usePrefersColor } = await import(/* webpackChunkName: 'dumi_demos' */ 'dumi/theme');
 
@@ -202,15 +210,17 @@ export default (api: IApi) => {
   });
 
   // export static for dynamic demos
-  api.modifyExportRouteMap((memo) => {
+  api.modifyExportRouteMap(memo => {
     if (api.config.exportStatic) {
-      memo.push(...Object.keys(demos).map(uuid => {
-        const demoRoutePath = `/${getDemoRouteName()}/${uuid}`;
+      memo.push(
+        ...Object.keys(demos).map(uuid => {
+          const demoRoutePath = `/${getDemoRouteName()}/${uuid}`;
 
-        return ({ route: { path: demoRoutePath }, file: `${demoRoutePath}/index.html` });
-      }));
+          return { route: { path: demoRoutePath }, file: `${demoRoutePath}/index.html` };
+        }),
+      );
     }
 
     return memo;
-  })
+  });
 };

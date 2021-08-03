@@ -40,5 +40,6 @@
   "peerDependencies": {
     "@umijs/preset-dumi": "1.x",
     "react": "^16.13.1 || ^17.0.0"
-  }
+  },
+  "gitHead": "8534e5091d75733f400867be8c2d6f8efaa50713"
 }

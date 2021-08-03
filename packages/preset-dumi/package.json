@@ -76,5 +76,6 @@
     "@umijs/core": "^3.2.6",
     "react-test-renderer": "^16.13.1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "8534e5091d75733f400867be8c2d6f8efaa50713"
 }

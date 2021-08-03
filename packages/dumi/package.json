@@ -27,5 +27,6 @@
     "@umijs/preset-dumi": "1.2.0",
     "umi": "^3.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "8534e5091d75733f400867be8c2d6f8efaa50713"
 }

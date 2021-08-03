@@ -16,7 +16,7 @@
       "exact": true
     },
     "publish": {
-      "registry": "httpr://registry.npm.ppbl.top"
+      "registry": "http://registry.npm.ppbl.top"
     }
   },
   "version": "independent",
