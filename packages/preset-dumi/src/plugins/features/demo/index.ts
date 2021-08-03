@@ -127,7 +127,9 @@ export default (api: IApi) => {
     const theme = await getTheme();
     const prependRoutes: IRoute[] = [
       {
-        path: `/${getDemoRouteName()}/:uuid`,
+        path: `/${getDemoRouteName()}/:uuid${
+          api.config.exportStatic && api.config.exportStatic.htmlSuffix ? '.html' : ''
+        }`,
         // use to disable pro-layout in integrated mode
         layout: false,
       },
