@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { IPreviewerComponentProps } from 'dumi/theme';
-import { useDemoUrl } from 'dumi/theme';
+import { useDemoUrl,context } from 'dumi/theme';
 import Layout from 'dumi-theme-default/src/layout';
 import type { IRouteComponentProps } from '@umijs/types';
 import Device from '../components/Device';
@@ -10,6 +10,8 @@ import '../style/layout.less';
 const MobileLayout: React.FC<IRouteComponentProps> = ({ children, ...props }) => {
   const [demo, setDemo] = useState<IPreviewerComponentProps>(null);
   const builtinDemoUrl = useDemoUrl(demo?.identifier);
+
+  console.log(builtinDemoUrl, 123);
 
   useEffect(() => {
     const handler = (ev: any) => {
