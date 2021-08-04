@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import ctx from '../../context';
+import { useState, useEffect, useContext } from 'react';
+import context from '../context';
 
 // functional for testing
 function isBMW() {
@@ -24,8 +24,6 @@ export const getDemoUrl = (demoId: string) => {
   } = window;
   const [base, hashRoute] = href.split(/#\//);
   const isHashRoute = typeof hashRoute === 'string';
-  console.log(demoId, isBMW(), ctx, ctx.umi?.config?.exportStatic, 888);
-
   return [
     isHashRoute ? `${base}#` : origin,
     // compatible with (empty), /base & /base/
@@ -41,6 +39,9 @@ export const getDemoUrl = (demoId: string) => {
  * hooks for get single demo url
  */
 export default (demoId: string) => {
+  const stt = useContext(context);
+  console.log(stt, 1231);
+
   const [url, setUrl] = useState('');
 
   useEffect(() => {
