@@ -24,7 +24,7 @@ export const getDemoUrl = (demoId: string) => {
   } = window;
   const [base, hashRoute] = href.split(/#\//);
   const isHashRoute = typeof hashRoute === 'string';
-  console.log(demoId, isBMW(), ctx.umi?.config?.exportStatic, 888);
+  console.log(demoId, isBMW(), ctx, ctx.umi?.config?.exportStatic, 888);
 
   return [
     isHashRoute ? `${base}#` : origin,
