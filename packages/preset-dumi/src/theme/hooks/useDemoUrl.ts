@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import ctx from '../../context';
 
-console.log(ctx, ctx.umi.config.exportStatic, 780);
-
 // functional for testing
 function isBMW() {
   return process.env.PLATFORM_TYPE === 'BASEMENT';
@@ -26,7 +24,7 @@ export const getDemoUrl = (demoId: string) => {
   } = window;
   const [base, hashRoute] = href.split(/#\//);
   const isHashRoute = typeof hashRoute === 'string';
-  console.log(demoId, isBMW(), ctx.umi.config.exportStatic, 888);
+  console.log(demoId, isBMW(), ctx.umi?.config?.exportStatic, 888);
 
   return [
     isHashRoute ? `${base}#` : origin,
