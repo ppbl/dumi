@@ -1,4 +1,4 @@
-import type { IApi } from '@umijs/types';
+import type { IApi, IConfig } from '@umijs/types';
 import type { IMenuItem } from './routes/getMenuFromRoutes';
 import type { INav, INavItem } from './routes/getNavFromRoutes';
 
@@ -50,7 +50,7 @@ export interface IDumiOpts {
     /**
      * Should we treat previewLangs codeblock as demo component
      */
-    passivePreview: boolean
+    passivePreview: boolean;
   };
   /**
    * customize the side menu
@@ -79,6 +79,10 @@ export interface IDumiOpts {
    * theme config
    */
   theme: Record<string, any>;
+  /**
+   * configure how html is output
+   */
+  exportStatic?: IConfig['exportStatic'];
 }
 
 const context: { umi?: IApi; opts?: IDumiOpts } = {};

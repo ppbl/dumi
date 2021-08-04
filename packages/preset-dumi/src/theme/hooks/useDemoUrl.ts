@@ -17,8 +17,9 @@ export const getDemoRouteName = () => {
 /**
  * get single demo url
  * @param demoId  demo identifier
+ * @param htmlSuffix true when `exportStatic: { htmlSuffix: true }`
  */
-export const getDemoUrl = (demoId: string) => {
+export const getDemoUrl = (demoId: string, htmlSuffix?: boolean) => {
   const {
     location: { href, origin },
   } = window;
@@ -31,7 +32,7 @@ export const getDemoUrl = (demoId: string) => {
     getDemoRouteName(),
     '/',
     demoId,
-    isBMW() ? '/index.html' : '',
+    isBMW() ? '/index.html' : `${htmlSuffix ? '.html' : ''}`,
   ].join('');
 };
 
@@ -39,14 +40,12 @@ export const getDemoUrl = (demoId: string) => {
  * hooks for get single demo url
  */
 export default (demoId: string) => {
-  const stt = useContext(context);
-  console.log(stt, 1231);
-
+  const { config } = useContext(context);
   const [url, setUrl] = useState('');
 
   useEffect(() => {
-    setUrl(getDemoUrl(demoId));
-  }, [demoId]);
+    setUrl(getDemoUrl(demoId, config.exportStatic && config.exportStatic.htmlSuffix));
+  }, [demoId, config]);
 
   return url;
 };
